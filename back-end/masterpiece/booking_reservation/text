@@ -1,0 +1,311 @@
+Base URL
+http://localhost/masterpiece/booking_reservation/
+
+1.Get Accepted Animal Bookings for admin
+Endpoint
+URL: acceptedForAdmin.php
+Method: GET
+
+Response
+Success Response:
+Code: 200 OK
+Content:
+json
+[
+    {
+        "animal_id": 4,
+        "booking_id": 18,
+        "start_date": "2023-12-01",
+        "end_date": "2023-11-29",
+        "total_price": 50.99,
+        "status": "accepted",
+        "user_name": "ana",
+        "animal_name": "fghj"
+    },
+    {
+        "animal_id": 4,
+        "booking_id": 20,
+        "start_date": "2023-12-01",
+        "end_date": "2023-12-01",
+        "total_price": 50,
+        "status": "accepted",
+        "user_name": "ana",
+        "animal_name": "fghj"
+    },
+    // ... additional entries ...
+]
+
+Error Response:
+Code: 404 Not Found
+Content: "No accepted animal bookings found for any user"
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////
+2. Update Animal Bookings Status
+
+Endpoint
+URL: changeStatus.php
+Method: POST
+
+Description: Updates the status of animal bookings to 'accepted' for a specific user.
+
+Parameters:
+user_id (integer, required): The ID of the user for whom animal bookings should be updated.
+
+Response:
+Success Response:
+
+Code: 200 OK
+Content:
+json
+{
+    "success": true,
+    "message": "X records updated"
+}
+
+
+Error Response:
+Code: 400 Bad Request
+Content:
+
+json
+{
+    "error": "Invalid JSON"
+}
+If the JSON data in the request is invalid.
+
+Code: 400 Bad Request
+Content:
+json
+{
+    "error": "user_id is required"
+}
+
+If user_id is missing in the request.
+Code: 500 Internal Server Error
+Content:
+json
+
+{
+    "error": "Database error: <error_message>"
+}
+If there is an error while executing the database update.
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+3. CreateBooking
+Endpoint: creatBooking.php
+Method: POST
+
+Description: Creates a new booking in the system.
+
+Parameters:
+as json
+{
+    "order_price": 75.99,
+    "description": "Sample description"
+}
+
+Response:
+Success Response:
+Code: 200 OK
+Content:
+json
+{
+    "success": true,
+    "message": "Booking created successfully"
+}
+
+Error Response:
+Code: 400 Bad Request
+Content:
+json
+{
+    "success": false,
+    "message": "Invalid or missing JSON data"
+}
+
+If the JSON data in the request is invalid or missing.
+Code: 400 Bad Request
+Content:
+json
+{
+    "success": false,
+    "message": "Missing required field: order_price"
+}
+
+If order_price is missing in the request.
+Code: 500 Internal Server Error
+Content:
+json
+{
+    "success": false,
+    "message": "Error creating booking: <error_message>"
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+4.editBooking
+
+Endpoint:
+URL:editBooking.php
+Method: PUT
+
+Request
+Description: Updates the details of an existing booking in the system.
+
+Parameters:
+order_id (integer, required): The ID of the booking to be updated.
+order_price (decimal, required): The new price of the booking.
+description (string, optional): New additional description for the booking.
+
+json
+{
+    "order_id": 1,
+    "order_price": 99.99,
+    "description": "Updated description"
+}
+
+Response:
+Success Response:
+Code: 200 OK
+Content:
+json
+{
+    "success": true,
+    "message": "Booking updated successfully"
+}
+
+
+Error Response:
+Code: 400 Bad Request
+Content:
+json
+{
+    "success": false,
+    "message": "Invalid or missing JSON data"
+}
+
+
+If the JSON data in the request is invalid or missing.
+Code: 400 Bad Request
+Content:
+json
+{
+    "success": false,
+    "message": "Missing required field: order_id or order_price"
+}
+
+If order_id or order_price is missing in the request.
+Code: 500 Internal Server Error
+Content:
+json
+{
+    "success": false,
+    "message": "Error updating booking: <error_message>"
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+5.Order Accepted for User
+Endpoint
+URL: OrderAcceptedForUser.php
+Method: GET
+
+Request
+Description: Retrieves accepted animal booking details along with user and animal details for a specific user.
+
+Parameters:
+user_id (integer, required): The ID of the user for whom to retrieve accepted animal booking details.
+json
+{
+    "user_id": 1
+}
+
+Response
+Success Response:
+Code: 200 OK
+Content:
+json
+[
+    {
+        "animal_id": 1,
+        "booking_id": 1,
+        "start_date": "2023-01-01",
+        "end_date": "2023-01-05",
+        "total_price": 100,
+        "status": "accepted",
+        "user_name": "JohnDoe",
+        "animal_name": "Fluffy"
+    },
+    // Additional accepted animal booking details for the user...
+]
+
+Error Response:
+Code: 400 Bad Request
+Content:
+json
+{
+    "error": "Invalid JSON data. Please provide a user_id."
+}
+
+If the JSON data in the request is invalid or missing the required user_id.
+Code: 404 Not Found
+Content:
+json
+{
+    "message": "No accepted animal bookings found for this user"
+}
+///////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+6.Order Pending for User
+
+Endpoint
+URL: OrderPendingForUser.php
+
+Method: GET
+Description: Retrieves pending animal booking details along with user and animal details for a specific user.
+
+Parameters:
+user_id (integer, required): The ID of the user for whom to retrieve pending animal booking details.
+json
+{
+    "user_id": 1
+}
+
+Response
+Success Response:
+Code: 200 OK
+Content:
+json
+[
+    {
+        "animal_id": 1,
+        "booking_id": 1,
+        "start_date": "2023-01-01",
+        "end_date": "2023-01-05",
+        "total_price": 100,
+        "status": "pending",
+        "user_name": "JohnDoe",
+        "animal_name": "Fluffy"
+    },
+    // Additional pending animal booking details for the user...
+]
+
+Error Response:
+Code: 400 Bad Request
+Content:
+
+json
+{
+    "error": "Invalid JSON data. Please provide a user_id."
+}
+
+If the JSON data in the request is invalid or missing the required user_id.
+Code: 404 Not Found
+Content:
+json
+{
+    "message": "No pending animal bookings found for this user"
+}

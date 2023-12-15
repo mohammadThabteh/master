@@ -1,0 +1,200 @@
+Base URL
+http://localhost/masterpiece/trainingCrud/
+
+
+1. Create Training Session and Link Animal
+Endpoint: insertUser.php
+Method: POST
+Description: Creates a new training session and links it to an animal.
+
+
+Request:
+POST http://localhost/masterpiece/trainingCrud/insertUser.php
+Content-Type: application/json
+{
+    "animal_id": 1,
+    "training_id": 2,
+    "description": "Training description"
+}
+
+Response (Success):
+{
+    "message": "Animal linked to training successfully."
+}
+
+Response (Failure):
+{
+    "message": "Error linking animal to training: <error_message>"
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+2. Delete Training Session
+
+Endpoint: training_delete.php
+Method: DELETE
+Description: Deletes a training session based on the provided training ID.
+
+Request:
+DELETE http://localhost/masterpiece/trainingCrud/training_delete.php
+Content-Type: application/json
+
+{
+    "training_id": 1
+}
+
+
+Response (Success):
+{
+    "message": "Training deleted successfully."
+}
+
+Response (Failure):
+{
+    "error": "Error: <error_message>"
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+3. Create Training
+Endpoint: training_create.php
+Method: PUT
+Description: Creates a new training session.
+
+Request:
+PUT http://localhost/masterpiece/trainingCrud/training_create.php
+Content-Type: application/json
+{
+    "name": "Basic Obedience",
+    "description": "Teaches basic commands",
+    "image": "basic_obedience.jpg",
+    "price": 50.00
+}
+
+
+Response (Success):
+{
+    "message": "Training created successfully."
+}
+
+
+Response (Failure):
+{
+    "message": "Error creating training: <error_message>"
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+4. Update Training
+Endpoint: training_edit.php
+Method: PUT
+Description: Updates an existing training session based on the provided training ID.
+
+
+Request:
+PUT http://localhost/masterpiece/trainingCrud/training_edit.php
+Content-Type: application/json
+
+{
+    "training_id": 1,
+    "name": "Advanced Agility Training",
+    "description": "Advanced agility course for experienced dogs",
+    "image": "agility_advanced.jpg",
+    "price": 75.00
+}
+
+
+Response (Success):
+{
+    "message": "Training updated successfully."
+}
+
+
+Response (Failure):
+{
+    "message": "Error updating training: <error_message>"
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+5. Read All Trainings and Get Training by ID
+
+Endpoint: training_read.php
+Method: GET (Read All), POST (Get by ID)
+Description:
+Retrieves information about all trainings when using the GET method.
+Retrieves information about a specific training by providing its ID when using the POST method.
+
+Read All Request:
+GET http://localhost/masterpiece/trainingCrud/training_read.php
+
+Read All Response (Success):
+[
+    {
+        "training_id": 1,
+        "name": "Basic Obedience",
+        "description": "Teaches basic commands",
+        "image": "basic_obedience.jpg",
+        "price": 50.00
+    },
+    {
+        "training_id": 2,
+        "name": "Advanced Agility Training",
+        "description": "Advanced agility course for experienced dogs",
+        "image": "agility_advanced.jpg",
+        "price": 75.00
+    },
+    ...
+]
+
+Get by ID Request:
+POST http://localhost/masterpiece/trainingCrud/training_read.php
+Content-Type: application/json
+
+{
+    "training_id": 1
+}
+
+Get by ID Response (Success):
+{
+    "training_id": 1,
+    "name": "Basic Obedience",
+    "description": "Teaches basic commands",
+    "image": "basic_obedience.jpg",
+    "price": 50.00
+}
+
+Response (Failure):
+{
+    "error": "Error: <error_message>"
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+6. Get Animal and Training Session Data
+
+Endpoint: user&animalData.php
+Method: POST
+Description: Retrieves data about an animal, its owner, and linked training sessions based on the provided animal ID.
+
+Request:
+POST http://localhost/masterpiece/trainingCrud/user&animalData.php
+Content-Type: application/json
+{
+    "animal_id": 1
+}
+
+Response (Success):
+{
+    "animal_name": "Fido",
+    "user_name": "John Doe",
+    "user_email": "john.doe@example.com",
+    "training_date": "2023-12-01",
+    "training_end_date": "2023-12-31"
+}
+
+Response (Failure):
+{
+    "error": "Internal Server Error"
+}

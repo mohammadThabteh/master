@@ -1,0 +1,129 @@
+Base URL
+http://localhost/masterpiece/pet_profile/
+
+
+Endpoints:
+
+1. Create Pet Profile
+Endpoint: pet_creat.php
+Method: POST
+Description: Creates a new pet profile for a user.
+
+Request:
+POST http://localhost/masterpiece/pet_profile/pet_creat.php
+Content-Type: application/json
+{
+    "user_id": 1,
+    "name": "Buddy",
+    "image": "buddy.jpg",
+    "age": 3
+}
+
+Response (Success):
+{
+    "success": true,
+    "message": "Pet details inserted successfully"
+}
+
+
+Response (Failure):
+{
+    "success": false,
+    "message": "Error inserting pet details: <error_message>"
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+2. Update Pet Profile
+Endpoint: pet_edit.php
+Method: PUT
+Description: Updates an existing pet profile for a user.
+
+Request:
+PUT http://localhost/masterpiece/pet_profile/pet_edit.php
+Content-Type: application/json
+{
+    "user_id": 1,
+    "id": 2,
+    "name": "Buddy",
+    "image": "buddy_updated.jpg",
+    "age": 4
+}
+
+
+Response (Success):
+{
+    "success": true,
+    "message": "Pet details updated successfully"
+}
+
+
+Response (Failure):
+{
+    "success": false,
+    "message": "Error updating pet details: <error_message>"
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+3. Retrieve Pet Profile
+Endpoint: pet_show.php
+Method: POST
+Description: Retrieves details of a specific pet profile based on user ID and pet ID.
+
+Request:
+POST http://localhost/masterpiece/pet_profile/pet_show.php
+Content-Type: application/json
+{
+    "user_id": 1,
+    "id": 2
+}
+
+
+Response (Success):
+{
+    "success": true,
+    "pet": {
+        "id": 2,
+        "user_id": 1,
+        "name": "Buddy",
+        "image": "buddy_updated.jpg",
+        "age": 4
+    }
+}
+
+
+Response (Failure):
+{
+    "success": false,
+    "message": "Error fetching pet details: <error_message>"
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+4. Delete Pet Profile
+Endpoint: delete.php
+Method: DELETE
+Description: Deletes a pet profile based on user ID and pet ID.
+Request:
+DELETE http://localhost/masterpiece/pet_profile/delete.php
+Content-Type: application/json
+{
+    "user_id": 1,
+    "id": 2
+}
+
+
+Response (Success):
+{
+    "success": true,
+    "message": "Animal deleted successfully"
+}
+
+
+Response (Failure):
+{
+    "success": false,
+    "message": "Error deleting animal: <error_message>"
+}

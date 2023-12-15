@@ -1,0 +1,175 @@
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+User Registration API
+
+Endpoint:
+localhost/masterpiece/userCrud/user_add.php
+
+use the POST Methode
+
+Description:
+Registers a new user with the provided information.
+Request Body:
+
+username: User's username
+password: User's password
+email: User's email address
+
+as a json
+{
+  "username": "example_user",
+  "password": "example_password",
+  "email": "user@example.com"
+}
+
+Response:
+Success: 200 OK
+Content: { "message": "user inserted successfully" }
+Failure: 400 Bad Request
+Content: { "message": "Failed to insert the user" }
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+User Deletion API
+
+Endpoint:
+localhost /masterpiece/userCrud/user_delete.php
+use the DELETE Methode
+
+
+Description:
+Deletes a user with the specified ID.
+
+Request Body:
+id: User ID to be deleted
+
+as a json
+
+{
+  "id": 12
+}
+
+Response:
+Success: 200 OK
+Content: { "message": "User deleted successfully." }
+Failure: 400 Bad Request
+Content: { "error": "Error: <error_message>" }
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+User Profile Update API
+
+Endpoint:
+PUT /masterpiece/userCrud/user_edit.php
+use the PUT Methode
+
+
+Description:
+Updates the user profile with the provided information
+
+Request Body:
+id: User ID to be updated
+image (optional): User's profile image URL
+username (optional): User's new username
+email (optional): User's new email address
+password (optional): User's new password
+
+as json
+{
+  "id": 456,
+  "image": "new_profile_image.jpg",
+  "username": "new_username",
+  "email": "new_email@example.com",
+  "password": "new_password"
+}
+
+Response:
+Success: 200 OK
+Content: { "success": "Profile updated successfully." }
+Failure: 400 Bad Request
+Content: { "error": "<error_message>" }
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+User read API
+
+Base URL
+http://localhost/masterpiece/userCrud/user_read.php
+
+
+
+Endpoints:
+1. Retrieve All Users
+Endpoint: /user_read.php
+Method: GET
+Description: Retrieves information about all users in the database.
+
+Request:
+GET http://localhost/masterpiece/userCrud/user_read.php
+
+Response: json
+[
+    {
+        "id": 1,
+        "username": "john_doe",
+        "email": "john.doe@example.com",
+        "...": "..."
+    },
+    {
+        "id": 2,
+        "username": "jane_doe",
+        "email": "jane.doe@example.com",
+        "...": "..."
+    },
+    ...
+]
+
+2. Retrieve a Specific User
+Endpoint: /user_read.php
+Method: POST
+Description: Retrieves information about a specific user by providing their ID in the
+ request payload.
+
+ Request: json
+
+{
+    "id": 1
+}
+
+Response: json
+{
+    "id": 1,
+    "username": "john_doe",
+    "email": "john.doe@example.com",
+    "...": "..."
+}
+
+Error Responses:
+
+If the user with the provided ID is not found:
+{
+    "message": "user with the provided ID not found."
+}
+
+If the user ID is not provided in the request payload:
+
+{
+    "error": "Please provide the user ID."
+}
+
+If an invalid request method is used:
+
+{
+    "error": "Invalid request method."
+}
+
+
+
+
+
+
+
+
+

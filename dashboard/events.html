@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>event Admin Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+        <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <div class="user-menu" style="display: flex; flex-direction: column;">
+    <h5>events Dashboard</h5>
+       <p style="margin-top: 5px;" class="btn btn-secondary"> <a style="color: aliceblue;" href="http://127.0.0.1:5500/dashboard/dashboard.html">User Dashboard</a></p>
+       <p style="margin-top: 5px;" class="btn btn-secondary"> <a style="color: aliceblue;" href="http://127.0.0.1:5500/dashboard/trainingAdmin.html">Training Dashboard</a></p>
+       <p style="margin-top: 5px;" class="btn btn-secondary"> <a style="color: aliceblue;" href="http://127.0.0.1:5500/dashboard/events.html">Event dashboard</a></p>
+
+</div>
+<div class="container">
+    <h2 class="mt-4">events Dashboard</h2>
+    <!-- Add User Form -->
+    <div class="add-user-form">
+        <h4>Add event</h4>
+        <form id="addUserForm">
+            <div class="form-group">
+                <label for="event_start">event_start</label>
+                <input type="text" class="form-control" id="event_start" required>
+            </div>
+            <div class="form-group">
+                <label for="event_description">event_description</label>
+                <input type="text" class="form-control" id="event_description" required>
+            </div>
+            <div class="form-group">
+                <label for="event_max_guests">event_max_guests</label>
+                <input type="text" class="form-control" id="event_max_guests" required>
+            </div>
+            <div class="form-group">
+                <label for="event_category">event_category</label>
+                <input type="text" class="form-control" id="event_category" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Add event</button>
+        </form>
+    </div>
+    <!-- User List Table -->
+    <div class="table-container">
+        <h4 class="mt-4">event List</h4>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>event_id</th>
+                    <th>event description</th>
+                    <th>event_category</th>
+                    <th>event_start</th>
+                    <th>event_end</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="userList">
+                <!-- Table rows will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
+</div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+   <script src="events.js"></script>
+</body>
+
+</html>

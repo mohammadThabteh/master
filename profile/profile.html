@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>PetHouse</title>
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,400,500,700"
+    rel="stylesheet">
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex justify-content-between">
+      <div class="logo mt-4">
+        <h2>PetHouse</h2>
+      </div>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto" href="../index.html">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="#services">Services</a></li>
+          <li><a class="nav-link scrollto " href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto active" href="./index.html">profile</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+    </div>
+  </header>
+
+
+  <div class="container mt-5" id="profile-container">
+    <h3>User Profile</h3>
+    <div id="user-info" class="mt-5 mb-5" >
+      <p><strong>Username: </strong> <span id="username-display"></span></p>
+      <p><strong>Email: </strong> <span id="email-display"></span></p>
+      <p><strong>Role:  </strong> <span id="role-display"></span></p>
+    </div>
+
+
+  
+    <div class="container_1">
+      <h2 class="mt-4">User Pets</h2>
+      <div class="table-container">
+          <h4 class="mt-4">User Pets</h4>
+          <table class="table table-bordered table-striped">
+              <thead>
+                  <tr>
+                      <th>Pet name</th>
+                      <th>Pet Age</th>
+                      <th>Created At</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody id="userList">
+                  <!-- Table rows will be dynamically added here -->
+              </tbody>
+          </table>
+      </div>
+  </div>
+
+  <div class="container_1">
+    <h2 class="mt-4">User Tarinings</h2>
+    <div class="table-container">
+        <h4 class="mt-4">Training</h4>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                  <th>Animal Name</th>
+                    <th>Training Name</th>
+                    <th>Training Date</th>
+                    <th>price</th>
+                    <th>description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="bookingList">
+                <!-- Table rows will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+  <script src="profile.js"></script>
+</body>
+</html>

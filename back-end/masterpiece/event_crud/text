@@ -1,0 +1,192 @@
+Base URL
+http://localhost/masterpiece/event_crud/
+
+Endpoints:
+
+1. Create Event
+Endpoint: event_create.php
+Method: POST
+Description: Creates a new event.
+
+Request:
+POST http://localhost/masterpiece/event_crud/event_create.php
+Content-Type: application/json
+{
+    "event_start": "2023-11-25 12:00:00",
+    "event_image": "image_url.jpg",
+    "event_description": "Event description",
+    "event_max_guests": 50,
+    "event_category": "Category",
+    "event_end": "2023-11-25 18:00:00"
+}
+
+Response (Success):
+{
+    "message": "Event inserted successfully"
+}
+
+Response (Failure):
+{
+    "message": "Failed to insert the event"
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+2. Read Event
+Endpoint: event_read.php
+Method: GET
+Description: Retrieves all events or a specific event by ID.
+
+Request (Retrieve All Events):
+GET http://localhost/masterpiece/event_crud/event_read.php
+
+Response (Success):
+[
+    {
+        "event_id": 1,
+        "event_start": "2023-11-25 12:00:00",
+        "event_image": "image_url.jpg",
+        "event_description": "Event description",
+        "event_max_guests": 50,
+        "event_category": "Category",
+        "event_end": "2023-11-25 18:00:00"
+    },
+    // Additional events...
+]
+
+************here when you use POST
+Request (Retrieve Event by ID):
+POST http://localhost/masterpiece/event_crud/event_read.php
+Content-Type: application/json
+{
+    "id": 1,
+    "event_id": 2
+}
+
+Response (Success):
+{
+    "event_id": 2,
+    "event_start": "2023-11-25 12:00:00",
+    "event_image": "image_url.jpg",
+    "event_description": "Event description",
+    "event_max_guests": 50,
+    "event_category": "Category",
+    "event_end": "2023-11-25 18:00:00"
+}
+
+Response (Failure):
+{
+    "message": "Event with the provided ID not found."
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+3. Insert into Event
+
+Endpoint: insertintoevent.php
+Method: POST
+Description: Inserts a user into an event.
+Request:
+POST http://localhost/masterpiece/event_crud/insertintoevent.php
+
+Content-Type: application/json
+{
+    "user_id": 1,
+    "event_id": 2
+}
+
+Response (Success):
+{
+    "status": "success",
+    "message": "User inserted into the event successfully"
+}
+
+
+Response (Failure):
+{
+    "status": "error",
+    "message": "Error: <error_message>"
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+4. Update Event
+Endpoint: event_edit.php
+Method: PUT
+Description: Updates an existing event.
+Request:
+PUT http://localhost/masterpiece/event_crud/event_edit.php
+Content-Type: application/json
+{
+    "event_id": 2,
+    "event_start": "2023-11-25 14:00:00",
+    "event_image": "updated_image_url.jpg",
+    "event_description": "Updated event description",
+    "event_max_guests": 60,
+    "event_category": "Updated Category"
+}
+
+
+Response (Success):
+{
+    "message": "Event updated successfully"
+}
+
+
+Response (Failure):
+{
+    "message": "Unable to update event. <error_message>"
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+5. Delete Event
+Endpoint: event_delete.php
+Method: DELETE
+Description: Deletes an event.
+
+Request:
+DELETE http://localhost/masterpiece/event_crud/event_delete.php
+Content-Type: application/json
+{
+    "event_id": 2
+}
+
+
+Response (Success):
+{
+    "message": "Event deleted successfully"
+}
+
+Response (Failure):
+{
+    "message": "Failed to delete the event"
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+6. Delete Event Attendance
+Endpoint: deleteEventAttend.php
+Method: DELETE
+Description: Deletes a user's attendance at an event.
+
+Request:
+DELETE http://localhost/masterpiece/event_crud/deleteEventAttend.php
+Content-Type: application/json
+{
+    "user_id": 1,
+    "event_id": 2
+}
+
+Response (Success):
+{
+    "status": "success",
+    "message": "User registration deleted from the event successfully"
+}
+
+
+Response (Failure):
+{
+    "status": "error",
+    "message": "Error: <error_message>"
+}
