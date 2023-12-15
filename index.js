@@ -8,6 +8,7 @@ const profileLink = document.getElementById('profileLink');
 const logoutLink = document.getElementById('logoutLink');
 const adminLink = document.getElementById('adminLink');
 
+
 if (isAdmin){
   adminLink.style.display = 'block';
 }
