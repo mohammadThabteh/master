@@ -24,7 +24,7 @@ function submitForm() {
         sessionStorage.setItem('username', username);
         sessionStorage.setItem('email', email);
         console.log('Registration successful')
-        window.location.href = 'http://127.0.0.1:5500/NewBiz/index.html'
+        window.location.href = 'http://127.0.0.1:5500/index.html'
       } else {
         console.error('Registration failed:', data.message);
         alert('Registration failed. Please try again.');

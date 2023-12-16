@@ -18,12 +18,15 @@
       </div>
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto" href="../index.html">Home</a></li>
+          <li><a class="nav-link scrollto active" href="../index.html">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Services</a></li>
+          <li><a class="nav-link scrollto" href="../index.html">Services</a></li>
           <li><a class="nav-link scrollto " href="#contact">Contact</a></li>
-          <li><a class="nav-link scrollto " href="../login/login.html">Login</a></li>
-          <li><a class="nav-link scrollto active" href="#">Sign Up</a></li>
+          <li id="loginLink"><a class="nav-link scrollto" href="../login/login.html">Login</a></li>
+          <li id="signupLink"><a class="nav-link scrollto" href="../signup/signup.html">Sign Up</a></li>
+          <li id="adminLink" style="display:none;"> <a class="nav-link scrollto" href="../dashboard/dashboard.html">Admin</a></li>
+          <li id="profileLink" style="display:none;"><a class="nav-link scrollto" href="../profile/profile.html">Profile</a></li>          
+          <li id="logoutLink" style="display:none;"><a class="nav-link scrollto" onclick="logout()" href="#">Logout</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>
@@ -117,5 +120,6 @@
     </div>
   </footer><!-- End Footer -->
   <script src="signup.js"></script>
+  <script src="../index.js"></script>
 </body>
 </html>

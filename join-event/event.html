@@ -8,7 +8,7 @@
     href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,400,500,700"
     rel="stylesheet">
   <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="booking.css">
+  <link rel="stylesheet" href="event.css">
 </head>
 <body>
   <header id="header" class="fixed-top d-flex align-items-center">
@@ -35,7 +35,7 @@
   <section id="about">
     <div class="container" data-aos="fade-up">
       <header class="section-header">
-        <h3>pet reservation booking</h3>
+        <h3>Join our Events</h3>
         <p>Here is an about section taks about the web site and about the services the we provide to the coustmers.  </p>
       </header>
       <div class="row about-container">
@@ -60,7 +60,7 @@
           </div>
         </div>
         <div class="col-lg-6 background order-lg-2" data-aos="zoom-in">
-          <img src="../assets/img/dog-clicker-training.jpg" class="img-fluid" alt="">
+          <img src="../assets/img/join-event.png" class="img-fluid" alt="">
         </div>
       </div>
     </div>
@@ -68,31 +68,7 @@
   <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h2 class="mb-4 text-center">pet reservation booking</h2>
-            <form id="petForm">
-              <div class="form-group">
-                <label for="animal_id">Select Animal</label>
-                <select class="form-control custom-input" id="animal_id" name="animal_id" required>
-                 
-               </select>
-              </div>
-              <div class="form-group">
-                 <label for="start_date">Start Date</label>
-                 <input type="date" class="form-control custom-input" id="start_date" name="start_date" required>
-              </div>
-               <div class="form-group">
-                  <label for="end_date">End Date</label>
-                   <input type="date" class="form-control custom-input" id="end_date" name="end_date" required>
-              </div>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-custom btn-block" onclick="submitForm(event)">Submit</button>
-                </div> 
-            </form>
-            <h2 class="mb-4 text-center">User Pending Reservations</h2>
-            <div class=" mt-4 d-flex flex-wrap" id="cardsSection">
-              <!-- Cards will be dynamically added here -->
-            </div>
-            <h2 class="mb-4 text-center">User Accepted Reservations</h2>
+            <h2 class="mb-4 text-center">Join Any of These Events</h2>
             <div class=" mt-4 d-flex flex-wrap justify-content-between" id="acceptedCardsSection">
               <!-- Cards will be dynamically added here -->
             </div>
@@ -159,7 +135,7 @@
       <div class="credits"> Designed by BootstrapMade</div>
     </div>
   </footer>
-  <script src="booking.js"></script>
+  <script src="event.js"></script>
   <script src="../index.js"></script>
 </body>
 </html>

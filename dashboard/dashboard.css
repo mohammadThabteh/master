@@ -1,13 +1,15 @@
 body {
     padding: 20px;
-    background-color: #f8f9fa;
+    background-color: #d9ecff;
     font-family: 'Arial', sans-serif;
 }
-
+h5 {
+    font-weight: 800;
+}
 .container {
     margin: 20px auto;
     max-width: 800px;
-    background-color: #ffffff;
+    background-color: #c5d5ea;
     border-radius: 8px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     padding: 30px;
@@ -48,11 +50,12 @@ body {
 }
 
 .user-menu {
+    height: 70vh;
     position: fixed;
-    top: 20px;
+    top: 40px;
     left: 20px;
-    padding: 15px;
-    background-color: #ffffff;
+    padding: 30px;
+    background-color: #b6c9e2;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }

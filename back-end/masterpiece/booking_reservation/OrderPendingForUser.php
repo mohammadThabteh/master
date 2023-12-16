@@ -9,8 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $data = json_decode(file_get_contents('php://input'), true);
 
     // Check if the JSON data contains the user_id
-    if (isset($data['user_id'])) {
-        $user_id = $data['user_id'];
+    if (isset($_GET['user_id'])) {
+        $user_id = $_GET['user_id'];
 
         // Fetch accepted animal_booking details along with user and animal details
         $animal_booking_query = "SELECT animal_booking.*, users.username AS user_name, animal.name AS animal_name

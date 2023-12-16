@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Pet Admin Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
+  <body>
+    <div class="user-menu" style="display: flex; flex-direction: column">
+      <h5>Booking & Reservations</h5>
+      <p
+        style="margin-top: 5px; margin-top: 25px"
+        class="btn btn-primary btn-lg"
+      >
+        <a
+          style="color: #fff"
+          href="http://127.0.0.1:5500/dashboard/dashboard.html"
+          >User Dashboard</a
+        >
+      </p>
+      <p
+        style="margin-top: 5px; margin-top: 25px"
+        class="btn btn-primary btn-lg"
+      >
+        <a
+          style="color: #fff"
+          href="http://127.0.0.1:5500/dashboard/trainingAdmin.html"
+          >Training Dashboard</a
+        >
+      </p>
+      <p
+        style="margin-top: 5px; margin-top: 25px"
+        class="btn btn-primary btn-lg"
+      >
+        <a
+          style="color: #fff"
+          href="http://127.0.0.1:5500/dashboard/events.html"
+          >Event dashboard</a
+        >
+      </p>
+      <p
+        style="margin-top: 5px; margin-top: 25px"
+        class="btn btn-primary btn-lg"
+      >
+        <a
+          style="color: #fff"
+          href="http://127.0.0.1:5500/dashboard/booking_status.html"
+          >Booking Status</a
+        >
+      </p>
+    </div>
+    <div class="container">
+      <h2 class="mt-4">User Reservations</h2>
+      <!-- Add User Form -->
+      <div class="add-user-form">
+        <h4>Add Booking</h4>
+        <form id="addUserForm">
+          <div class="form-group">
+            <label for="animal_description">animal description</label>
+            <input
+              type="text"
+              class="form-control"
+              id="animal_description"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="price">price</label>
+            <input type="text" class="form-control" id="price" required />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            onclick="createBooking(event)"
+          >
+            Add Booking
+          </button>
+        </form>
+      </div>
+      <!-- User List Table -->
+      <div class="table-container">
+        <h4 class="mt-4">Pending Reservations List</h4>
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>user name</th>
+              <th>animal name</th>
+              <th>start date</th>
+              <th>end date</th>
+              <th>total price</th>
+              <th>status</th>
+              <th>action</th>
+            </tr>
+          </thead>
+          <tbody id="userList">
+            <!-- Table rows will be dynamically added here -->
+          </tbody>
+        </table>
+      </div>
+      <div class="table-container">
+        <h4 class="mt-4">Accepted Reservations List</h4>
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>user name</th>
+              <th>animal name</th>
+              <th>start date</th>
+              <th>end date</th>
+              <th>total price</th>
+              <th>status</th>
+            </tr>
+          </thead>
+          <tbody id="bookingList">
+            <!-- Table rows will be dynamically added here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const userList = document.getElementById("userList");
+        function createPendingRow(user) {
+          const row = document.createElement("tr");
+          row.setAttribute("data-id", user.id);
+          row.innerHTML = `
+            <td>${user.user_name}</td>
+            <td>${user.animal_name}</td>
+            <td>${user.start_date}</td>
+            <td>${user.end_date}</td>
+            <td>${user.total_price}</td>
+            <td>${user.status}</td>
+            <td class="action-buttons">
+                <button class="edit-button" onclick="acceptResrvation(${user.user_id})">Accept</button>
+            </td>
+        `;
+          return row;
+        }
+        fetch(
+          "http://localhost/masterpiece/booking_reservation/pendingForAdmin.php"
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            data.forEach((user) => {
+              const row = createPendingRow(user);
+              userList.appendChild(row);
+            });
+          })
+          .catch((error) => console.error("Error fetching user data:", error));
+
+        window.acceptResrvation = function (id) {
+          fetch(
+            "http://localhost/masterpiece/booking_reservation/changeStatus.php",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ user_id: id }),
+            }
+          )
+            .then((response) => response.json())
+            .then((data) => {
+              console.log(data);
+              alert(data.message);
+            })
+            .catch((error) => {
+              console.error("Error fetching user data:", error);
+              alert(error.message);
+            });
+        };
+
+        const bookingList = document.getElementById("bookingList");
+        function createRow(user) {
+          const row = document.createElement("tr");
+          row.setAttribute("data-id", user.id);
+          row.innerHTML = `
+            <td>${user.user_name}</td>
+            <td>${user.animal_name}</td>
+            <td>${user.start_date}</td>
+            <td>${user.end_date}</td>
+            <td>${user.total_price}</td>
+            <td>${user.status}</td>
+        `;
+          return row;
+        }
+        fetch(
+          "http://localhost/masterpiece/booking_reservation/acceptedForAdmin.php"
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            data.forEach((user) => {
+              const row = createRow(user);
+              bookingList.appendChild(row);
+            });
+          })
+          .catch((error) => console.error("Error fetching user data:", error));
+      });
+
+      function createBooking() {
+        event.preventDefault();
+        const animal_description =
+          document.getElementById("animal_description").value;
+        const price = document.getElementById("price").value;
+        const sendData = {
+          order_price: price,
+          description: animal_description,
+        };
+        console.log(sendData);
+        fetch(
+          "http://localhost/masterpiece/booking_reservation/creatBooking.php",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(sendData),
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            alert("Booking Created Successfully");
+          })
+          .catch((error) => console.error("Error fetching user data:", error));
+      }
+    </script>
+  </body>
+</html>

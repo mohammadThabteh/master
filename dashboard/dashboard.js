@@ -50,18 +50,21 @@ addUserForm.addEventListener('submit', function(event) {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(newUser),
+        body: JSON.stringify(newUser)
     })
     .then(response => response.json())
     .then(data => {
         console.log(data)
         const row = createRow(data)
         userList.appendChild(row)
+        alert('added successfully')
+        window.location.reload();
     })
     .catch(error => console.error('Error adding user:', error));
-
-    addUserForm.reset();
-});
+        alert('error adding user:', error)
+        window.location.reload();
+        addUserForm.reset();
+})
  
 function updateUser() {
     const username = document.getElementById('username').value;
@@ -91,10 +94,11 @@ function updateUser() {
     })
     .then(data => {
         console.log(data);
-        // Remove the deleted user row from the table
-
+        alert('Updated successfully')
+        window.location.reload();
     })
     .catch(error => console.error('Error updating user:', error));
+    alert('Could not update');
     window.location.href = 'http://127.0.0.1:5500/dashboard/dashboard.html';
 
 }
@@ -122,7 +126,10 @@ function deleteUser (id) {
         if (deletedRow) {
             deletedRow.remove();
         }
-       
+        alert('Deleted successfully')
+        window.location.reload();
     })
     .catch(error => console.error('Error deleting user:', error));
+        alert('Deleted successfully')
+        window.location.reload();
 }

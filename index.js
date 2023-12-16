@@ -1,5 +1,5 @@
-const isLoggedIn =  sessionStorage.getItem('isLoggedIn') === 'true';
-console.log(isLoggedIn)
+var indexIsLoggedIn =  sessionStorage.getItem('isLoggedIn') === 'true';
+console.log(indexIsLoggedIn)
 const isAdmin =  sessionStorage.getItem('role') == '1';
 console.log("isAdmin:: ", isAdmin);
 const loginLink = document.getElementById('loginLink');
@@ -9,10 +9,10 @@ const logoutLink = document.getElementById('logoutLink');
 const adminLink = document.getElementById('adminLink');
 
 
-if (isAdmin){
+if (indexIsLoggedIn && isAdmin){
   adminLink.style.display = 'block';
 }
-if (isLoggedIn) {
+if (indexIsLoggedIn) {
   loginLink.style.display = 'none';
   signupLink.style.display = 'none';
   profileLink.style.display = 'block';
@@ -32,9 +32,9 @@ document.getElementById('trainingLink').addEventListener('click', function (even
   event.preventDefault(); 
 
   // Check if the user is logged in (you can replace this with your actual session check)
-  var isLoggedIn = sessionStorage.getItem('isLoggedIn');
+ 
 
-  if (isLoggedIn) {
+  if (indexIsLoggedIn) {
       
       window.location.href = './training/training.html';
   } else {
@@ -46,9 +46,8 @@ document.getElementById('bookingLink').addEventListener('click', function (event
   event.preventDefault(); 
 
   // Check if the user is logged in (you can replace this with your actual session check)
-  var isLoggedIn = sessionStorage.getItem('isLoggedIn');
 
-  if (isLoggedIn) {
+  if (indexIsLoggedIn) {
       
       window.location.href = './booking/booking.html';
   } else {

@@ -16,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
   try {
     $json_data = file_get_contents('php://input');
     $data = json_decode($json_data, true);
-
     // Check if required parameters are present in the JSON data
     if (isset($data['user_id']) && isset($data['event_id'])) {
       $user_id = $data['user_id'];
