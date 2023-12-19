@@ -18,6 +18,35 @@ if (isLoggedIn === "true") {
 const userList = document.getElementById("userList");
 const bookingList = document.getElementById("bookingList");
 const eventList = document.getElementById("eventList");
+const addPetForm = document.getElementById("addPetForm");
+
+addPetForm.addEventListener("submit", async function (event) {
+  event.preventDefault(); // Prevent the default form submission
+  try {
+    const petFormData = {
+      name: document.getElementById("name").value,
+      age: document.getElementById("age").value,
+      user_id: sessionStorage.getItem("USER_ID"),
+    };
+
+    console.log(petFormData);
+    const addPetResponse = await fetch(
+      "http://localhost/masterpiece/pet_profile/pet_creat.php",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        headers: { Accept: "application/json" },
+        body: JSON.stringify(petFormData),
+      }
+    );
+    let petInfo = await addPetResponse.json();
+    console.log(petInfo);
+    window.location.reload();
+  } catch (error) {
+    console.log(error);
+    alert(error.message);
+  }
+});
 
 function createRow(pet) {
   const row = document.createElement("tr");
@@ -27,9 +56,7 @@ function createRow(pet) {
         <td>${pet.age}</td>
         <td>${pet.created_at}</td>
         <td class="action-buttons">
-            <button class="delete-button" onclick="deletePet(${
-              (pet.id, userId)
-            })">Delete</button>
+            <button class="delete-button" onclick="deletePet(${pet.id})">Delete</button>
         </td>
     `;
   return row;
@@ -49,11 +76,12 @@ fetch("http://localhost/masterpiece/usersPet/user_petNames.php", {
   })
   .catch((error) => console.error("Error fetching user data:", error));
 
-function deletePet(id, user_id) {
+function deletePet(id) {
   fetch("http://localhost/masterpiece/pet_profile/delete.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ id: id, user_id: user_id }), // Make sure to send an object with a property named "userId"
+    headers: { Accept: "aplication/json" },
+    body: JSON.stringify({ id: id, user_id: userId }), // Make sure to send an object with a property named "userId"
   })
     .then((response) => response.json())
     .then((data) => {
@@ -98,49 +126,48 @@ fetch("http://localhost/masterpiece/trainigCrud/user&animalData.php", {
   })
   .catch((error) => console.error("Error fetching user data:", error));
 
-  // EVENT TABLE
-  function createEventRow(event) {
-    const row = document.createElement("tr");
-    row.setAttribute("data-id", event.event_id);
-    row.innerHTML = `
+// EVENT TABLE
+function createEventRow(event) {
+  const row = document.createElement("tr");
+  row.setAttribute("data-id", event.event_id);
+  row.innerHTML = `
             <td>${event.event_start}</td>
             <td>${event.event_description}</td>
             <td class="action-buttons">
                 <button class="delete-button" onclick="deleteEvent(${event.event_id})">Delete</button>
             </td>
         `;
-    return row;
-  }
+  return row;
+}
 
-  function deleteEvent(id) {
-    fetch("http://localhost/masterpiece/event_crud/deleteEventAttend.php", {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ event_id: id, user_id: userId })
-      })
-  
-  .then((response) => response.json())
-    .then((data) => {
-        console.log(data);
-      alert("event deleted successfully")
-      window.location.reload()
-      })
-    .catch((error) => {
-        alert(error.message)
-        console.error("Error fetching user data:", error);  
-    } 
-  )}
-
-  fetch("http://localhost/masterpiece/event_crud/showEventUser.php", {
-    method: "POST",
+function deleteEvent(id) {
+  fetch("http://localhost/masterpiece/event_crud/deleteEventAttend.php", {
+    method: "DELETE",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ user_id: userId })
+    body: JSON.stringify({ event_id: id, user_id: userId }),
   })
     .then((response) => response.json())
     .then((data) => {
-      data.events.forEach((event) => {
-        const row = createEventRow(event);
-        eventList.appendChild(row);
-      });
+      console.log(data);
+      alert("event deleted successfully");
+      window.location.reload();
     })
-    .catch((error) => console.error("Error fetching user data:", error));
+    .catch((error) => {
+      alert(error.message);
+      console.error("Error fetching user data:", error);
+    });
+}
+
+fetch("http://localhost/masterpiece/event_crud/showEventUser.php", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ user_id: userId }),
+})
+  .then((response) => response.json())
+  .then((data) => {
+    data.events.forEach((event) => {
+      const row = createEventRow(event);
+      eventList.appendChild(row);
+    });
+  })
+  .catch((error) => console.error("Error fetching user data:", error));

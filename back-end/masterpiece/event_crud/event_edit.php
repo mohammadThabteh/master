@@ -7,7 +7,7 @@ header("Content-Type: application/json");
 include "../include.php";
 
 // Assuming the request is a POST request with JSON data
-if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     try {
 
         $json_data = file_get_contents('php://input');
@@ -66,12 +66,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
     echo json_encode(array("message" => "Bad request"));
 }
 ?>
-<!-- {
-    "event_id": 2,
-    "event_start": "2023-11-25 12:00:00",
-    "event_image": "image_url.jpg",
-    "event_description": "Event description",
-    "event_max_guests": 50,
-    "event_category": "Category"
-
-} -->

@@ -28,8 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     })
     .catch((error) => {
-        console.error("Error fetching user data:", error)
-        alert(error.message)
+      console.error("Error fetching user data:", error);
     });
 });
 
@@ -63,8 +62,6 @@ addUserForm.addEventListener("submit", function (event) {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
-      const row = createRow(data);
-      userList.appendChild(row);
       alert("created successfully");
       window.location.reload();
     })
@@ -72,7 +69,6 @@ addUserForm.addEventListener("submit", function (event) {
       console.error("Error adding user:", error);
       alert(error.message);
       window.location.reload();
-      addUserForm.reset();
     });
 });
 
@@ -92,26 +88,23 @@ function updateEventHandler() {
     event_category: event_category,
     event_image: "image.png",
   };
-  console.log(updateEvent);
+  console.log(JSON.stringify(updateEvent));
 
   fetch("http://localhost/masterpiece/event_crud/event_edit.php", {
-    method: "PUT",
+    method: "POST",
     headers: { "Content-Type": "application/json" },
+    headers: { Accept: "application/json" },
     body: JSON.stringify(updateEvent),
   })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      }
-      throw new Error("Failed to update");
-    })
+    .then((response) => response.json())
     .then((data) => {
-      alert("Updated successfully");
+      console.log(data);
+      alert(data.message);
       window.location.href = "http://127.0.0.1:5500/dashboard/events.html";
     })
     .catch((error) => {
-      console.error("Error updating user:", error);
-      alert("Failed to update");
+      console.error("Error updating training:", error);
+      alert(error.message);
     });
 }
 
@@ -135,6 +128,7 @@ function deleteEvent(id) {
       if (deletedRow) {
         deletedRow.remove();
       }
+      alert(data.message);
       window.location.reload();
     })
     .catch((error) => {

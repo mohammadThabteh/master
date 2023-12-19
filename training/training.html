@@ -72,12 +72,14 @@
         <h2 class="mb-4 text-center" style="color: black;">Pet Information Form</h2>
         <form id="petForm">
           <div class="form-group">
-            <label for="name">name</label>
-            <input type="text" class="form-control custom-input" id="name" name="name" required>
+            <label for="animal_id">pet</label>
+            <select class="form-control custom-input" id="animal_id" name="animal_id" required>
+            </select>
           </div>
           <div class="form-group">
-            <label for="training_id">age</label>
-            <input type="text" class="form-control custom-input" id="age" name="age" required>
+            <label for="training_id">traning</label>
+            <select class="form-control custom-input" id="training_id" name="training_id" required>
+            </select>
           </div>
           <div class="form-group">
             <label for="description">animal_description</label>
@@ -93,7 +95,11 @@
           </div>
           <div class="form-group">
             <label for="price">Price</label>
-            <input type="text" class="form-control custom-input" id="price" name="price">
+            <select class="form-control custom-input" id="price" name="price" required>
+              <option>10$</option>
+              <option>20$</option>
+              <option>30$</option>
+            </select>          
           </div>
           <div class="text-center">
             <button type="submit" class="btn btn-custom btn-block" onclick="submitPetInfoForm()">Submit</button>

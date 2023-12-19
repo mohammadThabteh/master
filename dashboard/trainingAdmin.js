@@ -42,6 +42,7 @@ addUserForm.addEventListener("submit", function (event) {
   fetch("http://localhost/masterpiece/trainigCrud/training_creat.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
+    headers: { Accept: "application/json" },
     body: JSON.stringify(newTraining),
   })
     .then((response) => {
@@ -52,52 +53,42 @@ addUserForm.addEventListener("submit", function (event) {
     .then((data) => {
       console.log(data);
       const userList = document.getElementById("userList");
-      const newRow = createRow(data); // Assuming the response contains the new training data
       userList.appendChild(newRow);
-      addUserForm.reset();
       alert("Training created successfully");
       window.location.reload();
     })
     .catch((error) => {
       console.error("Error adding new training:", error);
-      alert("error creating new training");
+      window.location.reload();
     });
 });
 
-function editTraining(trainingId) {
+function updateTraining() {
+  const searchParams = new URLSearchParams(window.location.search);
+  const training_id = searchParams.get("id");
   const name = document.getElementById("name").value;
   const description = document.getElementById("description").value;
   const price = document.getElementById("price").value;
 
   const updatedTraining = {
-    training_id: trainingId,
+    training_id: training_id,
     name: name,
     description: description,
     price: price,
+    image: "training.png",
   };
-
   fetch("http://localhost/masterpiece/trainigCrud/training_edite.php", {
-    method: "PUT",
+    method: "POST",
     headers: { "Content-Type": "application/json" },
+    headers: { "Accept": "application/json" },
     body: JSON.stringify(updatedTraining),
   })
     .then((response) => response.json())
     .then((data) => {
-      const userList = document.getElementById("userList");
-      const existingRow = userList.querySelector(`tr[data-id="${trainingId}"]`);
-      if (existingRow) {
-        existingRow.innerHTML = `
-                  <td>${data.name}</td>
-                  <td>${data.description}</td>
-                  <td>${data.price}</td>
-                  <td>
-                      <button class="edit-button" onclick="editTraining(${data.id})">Edit</button>
-                      <button class="delete-button" onclick="deleteTraining(${data.id})">Delete</button>
-                  </td>
-              `;
-      }
-      addUserForm.reset();
-      addUserForm.removeEventListener("submit", updatedTraining);
+      console.log(data);
+      alert(data.message);
+      window.location.href =
+        "http://127.0.0.1:5500/dashboard/trainingAdmin.html";
     })
     .catch((error) => {
       console.error("Error updating training:", error);
