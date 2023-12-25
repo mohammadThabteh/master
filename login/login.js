@@ -2,11 +2,33 @@ function submitLoginForm(event) {
   event.preventDefault();
   var email = document.getElementById("email").value;
   var password = document.getElementById("password").value;
+  if (!email || !password) {
+    alert("Please enter a username and email address and password")
+    window.location.reload()
+  }
+  var hasError = false;
+
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    highlightError("email");
+    hasError = true;
+  }
+
+  // Check password length
+  if (password.length < 6) {
+    highlightError("password");
+    hasError = true;
+  }
+
+  if (hasError) {
+    return alert("Please check errors below ")
+  }
 
   var formData = {
     email: email,
     password: password,
-  };
+  }
+
   console.log(formData);
   fetch("http://localhost/masterpiece/sign_up&in/login.php", {
     method: "POST",
@@ -32,4 +54,8 @@ function submitLoginForm(event) {
       console.error("Error:", error);
       alert("An error occurred. Please try again later.");
     });
+}
+function highlightError(fieldId) {
+ let element =  document.getElementById(fieldId)
+ element.classList.add("error");
 }

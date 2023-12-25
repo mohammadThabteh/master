@@ -45,8 +45,8 @@ document.addEventListener("DOMContentLoaded", function () {
           <p class="card-text">Description: ${entry.event_description}</p>
           <p class="card-text">event max guests: ${entry.event_max_guests}</p>
           <p class="card-text">category: ${entry.event_category}</p>
-          <p class="card-text">event start: ${entry.event_start}</p>
-          <p class="card-text">event_end: ${entry.event_end}</p>
+          <p class="card-text">event start: ${new Date(entry.event_start).toLocaleDateString()}</p>
+          <p class="card-text">event end: ${new Date(entry.event_end).toLocaleDateString()}</p>
           <button id=button${entry.event_id} class="btn btn-danger" onclick="joinEvent('${entry.event_id}')">Join Event</button>
         </div>
       `;

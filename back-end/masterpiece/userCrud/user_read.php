@@ -8,7 +8,7 @@ include "../include.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
-    $sql = "SELECT * FROM users";
+    $sql = "SELECT users.* ,role.role from users Inner join role on users.role_id=role.role_id  ";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -38,4 +38,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 } else {
     echo json_encode(array("error" => "Invalid request method."));
 }
-

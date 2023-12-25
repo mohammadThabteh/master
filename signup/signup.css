@@ -1,6 +1,7 @@
 body{
     background-color: #d8e4ef;
 }
+
 #header {
     height: 80px;
     z-index: 997;
@@ -183,6 +184,9 @@ h6 {
     border-radius: 4px;
     cursor: pointer;
     font-size: 18px;
+  }
+  .error{
+    border: 2px solid rgb(233, 75, 75) !important;
   }
 
   .signup-container button:hover {

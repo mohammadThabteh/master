@@ -190,10 +190,8 @@ body{
   .login-container button:hover {
     background-color: #15477c;
   }
-  .error-message {
-    color: #dc3545;
-    font-size: 14px;
-    margin-top: 5px;
+  .error {
+    border: 2px solid #df5840 !important;
   }
 
 

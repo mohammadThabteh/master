@@ -76,31 +76,7 @@
     <div class="container">
       <h2 class="mt-4">User Reservations</h2>
       <!-- Add User Form -->
-      <div class="add-user-form">
-        <h4>Add Booking</h4>
-        <form id="addUserForm">
-          <div class="form-group">
-            <label for="animal_description">animal description</label>
-            <input
-              type="text"
-              class="form-control"
-              id="animal_description"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="price">price</label>
-            <input type="text" class="form-control" id="price" required />
-          </div>
-          <button
-            type="submit"
-            class="btn btn-primary"
-            onclick="createBooking(event)"
-          >
-            Add Booking
-          </button>
-        </form>
-      </div>
+      
       <!-- User List Table -->
       <div class="table-container">
         <h4 class="mt-4">Pending Reservations List</h4>
@@ -192,14 +168,14 @@
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
-              headers: { "Accept": "application/json" },
+              headers: { Accept: "application/json" },
               body: JSON.stringify({ user_id: id }),
             }
           )
             .then((response) => response.json())
             .then((data) => {
               alert(data.message);
-              window.location.reload()
+              window.location.reload();
             })
             .catch((error) => {
               console.error("Error fetching user data:", error);

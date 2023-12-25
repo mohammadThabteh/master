@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     row.setAttribute("data-id", user.id);
     row.innerHTML = `
             <td>${user.username}</td>
-            <td>${user.role_id}</td>
+            <td>${user.role}</td>
             <td>${user.email}</td>
             <td class="action-buttons">
                 <button class="edit-button" onclick="editUser(${user.id})">Edit</button>
@@ -35,13 +35,13 @@ addUserForm.addEventListener("submit", function (event) {
 
   const username = document.getElementById("username").value;
   const email = document.getElementById("email").value;
-  const role = document.getElementById("role_id").value;
+  const password = document.getElementById("password").value;
 
   const newUser = {
     username: username,
     email: email,
-    role_id: role,
-  };
+    password: password,
+  }
 
   // Call the API to add a new user
   fetch("http://localhost/masterpiece/userCrud/user_add.php", {
@@ -59,11 +59,12 @@ addUserForm.addEventListener("submit", function (event) {
       alert("added successfully");
       window.location.reload();
     })
-    .catch((error) => console.error("Error adding user:", error));
-  alert("error adding user:", error);
-  window.location.reload();
-  addUserForm.reset();
-});
+    .catch((error) => {
+      console.error("Error adding user:", error);
+      alert("error adding user:", error);
+      window.location.reload();
+    })
+})
 
 function updateUser() {
   const username = document.getElementById("username").value;
@@ -124,9 +125,9 @@ function deleteUser(id) {
       alert("Deleted successfully");
       window.location.reload();
     })
-    .catch((error) =>{
-        console.error("Error deleting user:", error);
-        alert(error.message);
-        window.location.reload()
+    .catch((error) => {
+      console.error("Error deleting user:", error);
+      alert(error.message);
+      window.location.reload();
     });
 }
