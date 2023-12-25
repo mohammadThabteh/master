@@ -25,6 +25,10 @@ if (indexIsLoggedIn) {
 }
 function logout() {
     sessionStorage.removeItem('isLoggedIn');
+    sessionStorage.removeItem('USER_ID')
+    sessionStorage.removeItem('role')
+    sessionStorage.removeItem('email')
+
     window.location.href = './login/login.html';
 }
 

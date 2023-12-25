@@ -41,6 +41,7 @@ addPetForm.addEventListener("submit", async function (event) {
     );
     let petInfo = await addPetResponse.json();
     console.log(petInfo);
+    alert('animal created successfully')
     window.location.reload();
   } catch (error) {
     console.log(error);
@@ -107,7 +108,6 @@ function createTrainingRow(training) {
       <td>${training.training_date}</td>
       <td>${training.price}</td>
       <td>${training.description}</td>
-      <td class="action-buttons">
       </td>
   `;
   return row;

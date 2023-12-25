@@ -51,22 +51,24 @@ addUserForm.addEventListener("submit", function (event) {
     event_image: "image.png",
   };
 
-  // Call the API to add a new user
   fetch("http://localhost/masterpiece/event_crud/event_create.php", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
+    headers: { Accept: "application/json" },
     body: JSON.stringify(newEvent),
   })
-    .then((response) => response.json())
+    .then((response) => {
+      let res = response.json();
+      console.log(res);
+      return res;
+    })
     .then((data) => {
       console.log(data);
       alert("created successfully");
       window.location.reload();
     })
     .catch((error) => {
-      console.error("Error adding user:", error);
+      console.error("Error adding event:", error);
       alert(error.message);
       window.location.reload();
     });

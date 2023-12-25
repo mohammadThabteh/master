@@ -1,3 +1,4 @@
+var user_id = sessionStorage.getItem("USER_ID");
 document.addEventListener("DOMContentLoaded", function () {
   fetch(`http://localhost/masterpiece/event_crud/event_read.php`, {
     method: "GET",
@@ -6,6 +7,30 @@ document.addEventListener("DOMContentLoaded", function () {
     .then((response) => response.json())
     .then((data) => {
       displayAcceptedCards(data);
+      return data;
+    })
+    .then((data) => {
+      fetch("http://localhost/masterpiece/event_crud/showEventUser.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user_id: user_id }),
+      })
+        .then((response) => response.json())
+        .then((user_events) => {
+          let user_events_ids = user_events.events.map((event) => {
+            return event.event_id;
+          });
+          console.log(user_events_ids);
+          for (let i = 0; i < data.length; i++) {
+            const event = data[i];
+            if (user_events_ids.includes(event.event_id)) {
+              let button = document.getElementById(`button${event.event_id}`);
+              button.style.display = "none";
+            }
+          }
+          console.log(data);
+        })
+        .catch((error) => console.error("Error fetching user data:", error));
     })
     .catch((error) => console.error("Error fetching data:", error));
 
@@ -22,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <p class="card-text">category: ${entry.event_category}</p>
           <p class="card-text">event start: ${entry.event_start}</p>
           <p class="card-text">event_end: ${entry.event_end}</p>
-          <button class="btn btn-danger" onclick="joinEvent('${entry.event_id}')">Join Event</button>
+          <button id=button${entry.event_id} class="btn btn-danger" onclick="joinEvent('${entry.event_id}')">Join Event</button>
         </div>
       `;
       cardsSection.appendChild(card);
@@ -30,7 +55,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 function joinEvent(id) {
-  const user_id = sessionStorage.getItem("USER_ID");
   fetch(`http://localhost/masterpiece/event_crud/insertintoevent.php`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -40,6 +64,7 @@ function joinEvent(id) {
     .then((data) => {
       console.log(data);
       alert(data.message);
+      window.location.reload();
     })
     .catch((error) => {
       console.log(error);

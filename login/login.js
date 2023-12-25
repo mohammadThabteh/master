@@ -21,7 +21,7 @@ function submitLoginForm(event) {
         sessionStorage.setItem("isLoggedIn", true);
         sessionStorage.setItem("USER_ID", data.USER_ID);
         sessionStorage.setItem("role", data.ROLE);
-        sessionStorage.setItem("email", data.email);
+        sessionStorage.setItem("email", formData.email);
         window.location.href = "http://127.0.0.1:5500/index.html";
       } else {
         console.error("Login failed");
