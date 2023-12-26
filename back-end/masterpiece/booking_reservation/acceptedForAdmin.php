@@ -6,7 +6,6 @@ header("Content-Type: application/json");
 include "../include.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    // Fetch accepted animal_booking details along with user and animal details for all users
     $animal_booking_query = "SELECT animal_booking.*, users.username AS user_name, animal.name AS animal_name
                                 FROM animal_booking
                                 INNER JOIN animal ON animal_booking.animal_id = animal.id
@@ -19,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         while ($row = $result->fetch_assoc()) {
             $animal_bookings[] = $row;
         }
-        // Return JSON response with accepted animal_booking details for all users
         echo json_encode($animal_bookings);
     } else {
         echo "No accepted animal bookings found for any user";

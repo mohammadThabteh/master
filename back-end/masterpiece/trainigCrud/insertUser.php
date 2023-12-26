@@ -4,17 +4,14 @@ header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json");
 
-// Include the file with the database connection
 include "../include.php";
 
-// Assuming you receive JSON data in the request body
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   try {
     $json_data = file_get_contents('php://input');
     $data = json_decode($json_data, true);
 
-    // Validate the input data (you may need more validation depending on your requirements)
     if (!isset($data['animal_id']) || !isset($data['training_id']) || !isset($data['description'])) {
       http_response_code(400);
       echo json_encode(array("message" => "Incomplete data. Please provide animal_id, training_id, and description."));
@@ -25,7 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $training_id = $data['training_id'];
     $description = $data['description'];
 
-    // Interpolate values into the SQL query with a JOIN statement
     $query = "INSERT INTO `training_booking` (`animal_id`, `training_id`, `training_date`, `training_end_date`, `price`, `description`) 
               SELECT 
                 $animal_id, 
